@@ -1,0 +1,47 @@
+# MERN Stack PDF Signature App Rules
+
+## Tech Stack Requirements
+- Frontend: React.js with Tailwind CSS
+- Backend: Node.js with Express.js
+- Database: MongoDB with Mongoose
+- PDF Handling: PDF-lib for signature embedding, react-pdf for viewing
+- Authentication: JWT with bcrypt for password hashing
+- File Upload: Multer middleware
+
+## Code Style Guidelines
+- Use functional components with React hooks
+- Implement proper error handling for all API calls
+- Use async/await for asynchronous operations
+- Follow RESTful API conventions
+- Use TypeScript-style JSDoc comments
+- Implement proper input validation and sanitization
+
+## Project Structure
+
+/pdf-signature-app
+├── /client (React frontend)
+│ ├── /src
+│ │ ├── /components
+│ │ ├── /pages
+│ │ ├── /hooks
+│ │ ├── /utils
+│ │ └── /context
+├── /server (Node.js backend)
+│ ├── /controllers
+│ ├── /models
+│ ├── /routes
+│ ├── /middleware
+│ └── /utils
+
+## Signature Positioning System
+- Use PDF coordinate system (bottom-left origin at 0,0)
+- Store signatures with x, y coordinates, page number, width, height
+- Implement coordinate transformation between CSS pixels and PDF points
+- Support signature rotation in degrees (0-360)
+
+## Security Requirements
+- Validate all file uploads (PDF only, size limits)
+- Sanitize user inputs
+- Implement rate limiting for API endpoints
+- Use HTTPS for email invitation links
+- Audit trail for all signature actions 

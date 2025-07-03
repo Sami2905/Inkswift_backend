@@ -1,9 +1,0 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  font-family: 'Inter', Segoe UI, Helvetica Neue, sans-serif;
-  background-color: theme('colors.gray.50');
-} 
