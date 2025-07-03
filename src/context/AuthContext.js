@@ -160,7 +160,7 @@ export const AuthProvider = ({ children }) => {
       refresh();
     }, 10 * 60 * 1000);
     return () => clearInterval(interval);
-  }, [refreshToken]);
+  }, [refreshToken, refresh]);
 
   return (
     <AuthContext.Provider value={{ user, token, refreshToken, login, logout, refresh, loading }}>

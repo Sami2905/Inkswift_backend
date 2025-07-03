@@ -158,7 +158,7 @@ const PDFRenderer = ({ file, base64, onPageChange, initialPage = 1, signatureFie
         URL.revokeObjectURL(objectUrl);
       }
     };
-  }, [file, base64]);
+  }, [file, base64, objectUrl]);
 
   // Debug effect
   useEffect(() => {

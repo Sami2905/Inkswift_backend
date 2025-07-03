@@ -30,13 +30,13 @@ const SignatureInputModal = ({ open, onClose, onSave }) => {
   const [isPadEmpty, setIsPadEmpty] = useState(true);
 
   useEffect(() => {
-    if (!open) return;
-    if (mode === 'draw' && canvasRef.current) {
+    if (open && mode === 'draw' && canvasRef.current) {
+      const canvas = canvasRef.current;
       if (signaturePadRef.current) {
         signaturePadRef.current.off();
         signaturePadRef.current = null;
       }
-      signaturePadRef.current = new SignaturePad(canvasRef.current, {
+      signaturePadRef.current = new SignaturePad(canvas, {
         backgroundColor: 'rgb(255,255,255)',
         penColor: 'rgb(0,0,0)',
         minWidth: 1.5,
@@ -49,14 +49,14 @@ const SignatureInputModal = ({ open, onClose, onSave }) => {
       const updateOnPointerUp = () => {
         updateDrawPreview();
       };
-      canvasRef.current.addEventListener('pointerup', updateOnPointerUp);
-      canvasRef.current.addEventListener('touchend', updateOnPointerUp);
+      canvas.addEventListener('pointerup', updateOnPointerUp);
+      canvas.addEventListener('touchend', updateOnPointerUp);
       setIsPadEmpty(true);
       setDrawPreview(null);
       return () => {
-        if (canvasRef.current) {
-          canvasRef.current.removeEventListener('pointerup', updateOnPointerUp);
-          canvasRef.current.removeEventListener('touchend', updateOnPointerUp);
+        if (canvas) {
+          canvas.removeEventListener('pointerup', updateOnPointerUp);
+          canvas.removeEventListener('touchend', updateOnPointerUp);
         }
       };
     }
