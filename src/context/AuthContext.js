@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }) => {
     setRefreshToken(refreshToken);
   };
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     setLoading(true);
     try {
       if (token && refreshToken) {
@@ -140,9 +140,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem('user');
       setLoading(false);
     }
-  };
+  }, [token, refreshToken]);
 
-  const refresh = async () => {
+  const refresh = useCallback(async () => {
     if (!refreshToken) return;
     try {
       const res = await axios.post('/api/auth/refresh', { refreshToken });
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Token refresh error:', e);
       logout();
     }
-  };
+  }, [refreshToken, logout]);
 
   // Optionally, auto-refresh token every 10 minutes
   useEffect(() => {
